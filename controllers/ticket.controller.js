@@ -20,18 +20,16 @@ exports.createTicket = async (req, res) => {
     user.ticketsCreated.push(ticketCreated._id);
     await user.save();
 
-    return res
-      .status(httpCodes.success)
-      .send({
-        message: "Ticket creation successful",
-        ticket: ticketCreated,
-        user: user,
-      });
+    return res.status(httpCodes.success).send({
+      message: "Ticket creation successful",
+      ticket: ticketCreated,
+      user: user,
+    });
   } catch (err) {
     return res
       .status(httpCodes.internalServerError)
       .send({ message: "Unable to create the ticket", error: err.message });
   }
 
-  // There is no automatic assignment of ticket to the engineer in this code however if there is any such automation logic, then it should here instead
+  // There is no automatic assignment of ticket to the engineer in this code however if there is any such automation logic, then it should here
 };
